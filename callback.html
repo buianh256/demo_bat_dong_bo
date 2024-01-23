@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callback</title>
+</head>
+<body>
+<script>
+    function start(callback) {
+        setTimeout(() => {
+            console.log("Starting")
+            callback();
+        }, 2000)
+    }
+
+    function doing(callback) {
+        setTimeout(() => {
+            console.log("Doing")
+            callback();
+        }, 1500)
+    }
+
+    function done() {
+        setTimeout(() => {
+            setTimeout(() => {
+                console.log("Done")
+            })
+        }, 500)
+    }
+
+    start(
+        () => {
+            doing(
+                () => {
+                    done()
+                }
+            )
+        }
+    );
+
+</script>
+</body>
+</html>
